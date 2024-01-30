@@ -1,9 +1,9 @@
-import Login from "./component/organisms/Login";
+import RouteLink from "./RouteLink";
 
 function App() {
   return (
     <>
-      <Login />
+      <RouteLink />
     </>
   );
 }

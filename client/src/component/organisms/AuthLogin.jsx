@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import axios from "axios";
 import LabeledInput from "../molecules/LabeledInput";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function AuthLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [showMessage, setShowMessage] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     const URL = import.meta.env.VITE_REACT_APP_URL;
-    console.log(URL);
 
     try {
       const response = await axios.post(`${URL}/auth/login`, {
         username: username,
         password: password,
       });
+      const requestToken = response.data.token;
+
+      sessionStorage.setItem("token", requestToken);
+      navigate("/");
     } catch (error) {
       setMessage(error.response.data.message);
       setShowMessage(true);
@@ -40,9 +45,12 @@ function Login() {
   return (
     <div className="login">
       <div className="login-container font-open-sans flex justify-center items-center h-screen w-full">
-        <div className="login-wrapper border rounded-lg min-w-fit w-[450px] p-6">
+        <div className="login-wrapper rounded-lg min-w-fit w-[400px] p-6">
           <form method="POST" onSubmit={handleLogin}>
-            <h1 className="mb-6 text-2xl font-bold text-blue-700">Login</h1>
+            <h1 className="mb-1 text-2xl font-bold text-blue-700">Login</h1>
+            <span className="mb-6 block text-gray-500 text-sm">
+              Selamat datang, silahkan login
+            </span>
             <LabeledInput
               type="text"
               name="username"
@@ -56,15 +64,15 @@ function Login() {
               handle={handleChangePassword}
             />
             <p
-              className={`message text-red-500 text-sm ${
+              className={`message text-red-500 text-sm font-semibold ${
                 showMessage ? "visible" : "hidden"
               }`}
             >
-              {message}
+              {message}!
             </p>
             <button
               type="submit"
-              className="bg-blue-700 text-white py-2 px-4 mt-4 rounded-md "
+              className="bg-blue-700 text-white py-2 px-4 mt-4 rounded-md w-full"
             >
               Submit
             </button>
@@ -75,4 +83,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AuthLogin;

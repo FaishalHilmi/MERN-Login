@@ -4,7 +4,7 @@ import Input from "../atoms/Input";
 
 function LabeledInput({ type, name, text, handle }) {
   return (
-    <div className="input-item mb-2">
+    <div className="input-item mb-3">
       <Label htmlfor={name} text={text} />
       <Input type={type} name={name} handle={handle} />
     </div>

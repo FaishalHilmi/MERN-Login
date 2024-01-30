@@ -8,6 +8,7 @@ function Input({ type, name, handle }) {
       id={name}
       name={name}
       onChange={handle}
+      required
     />
   );
 }

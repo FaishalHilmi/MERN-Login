@@ -18,3 +18,13 @@ export const register = async (data) => {
 
   return true;
 };
+
+export const loggedIn = async (username) => {
+  const db = await getConnection();
+
+  const [result] = await db.query(
+    `SELECT * FROM user WHERE username = '${username}' `
+  );
+
+  return result;
+};

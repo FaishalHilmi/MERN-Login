@@ -1,4 +1,4 @@
-import { login, register } from "../model/authModel.js";
+import { loggedIn, login, register } from "../model/authModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -65,6 +65,26 @@ export const registerController = async (req, res) => {
     return res.status(200).json({
       message: "Register Berhasil",
       succes: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error,
+    });
+  }
+};
+
+export const loggedInController = async (req, res) => {
+  const username = res.locals.jwt.username;
+
+  try {
+    const result = await loggedIn(username);
+    const row = result[0];
+
+    return res.status(200).json({
+      id: row.id,
+      username: row.username,
+      role: row.role,
+      loggedIn: true,
     });
   } catch (error) {
     return res.status(500).json({
