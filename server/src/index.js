@@ -30,19 +30,6 @@ app.get("/", authToken, async (req, res) => {
 
   const SQLquery = "SELECT * FROM mahasiswa";
 
-  // const result = await db.query(SQLquery, (error, result) => {
-  //   if (error)
-  //     return res.status(400).json({
-  //       message: error.message,
-  //     });
-
-  //   return res.status(200).json({
-  //     message: "Berhasil mendapatkan data",
-  //     data: result,
-  //   });
-  // }
-  // );
-
   try {
     const [result] = await db.query(SQLquery);
 
@@ -56,6 +43,19 @@ app.get("/", authToken, async (req, res) => {
     });
   }
 });
+
+// const result = await db.query(SQLquery, (error, result) => {
+//   if (error)
+//     return res.status(400).json({
+//       message: error.message,
+//     });
+
+//   return res.status(200).json({
+//     message: "Berhasil mendapatkan data",
+//     data: result,
+//   });
+// }
+// );
 
 app.use((error, req, res, next) => {
   res.json({

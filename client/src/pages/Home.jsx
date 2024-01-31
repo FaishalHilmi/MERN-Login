@@ -1,10 +1,13 @@
 import React from "react";
+import Navigasi from "../component/organisms/Navigasi";
+import Homepage from "../component/organisms/Homepage";
 
 function Home() {
   return (
-    <>
-      <h1>Home</h1>
-    </>
+    <main className="bg-gray-100">
+      <Navigasi />
+      <Homepage />
+    </main>
   );
 }
 
