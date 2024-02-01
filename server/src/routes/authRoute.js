@@ -4,12 +4,12 @@ import {
   loginController,
   registerController,
 } from "../controller/authController.js";
-import authToken from "../middleware/authToken.js";
+// import authToken from "../middleware/authToken.js";
 
 const router = express.Router();
 
 router.post("/login", loginController);
 router.post("/register", registerController);
-router.get("/", authToken, loggedInController);
+// router.get("/", authToken, loggedInController);
 
 export default router;

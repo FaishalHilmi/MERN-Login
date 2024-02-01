@@ -4,8 +4,8 @@ import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import AuthRouter from "./routes/authRoute.js";
+import UserRouter from "./routes/userRoute.js";
 import authToken from "./middleware/authToken.js";
-import { getConnection } from "./config/database.js";
 
 dotenv.config();
 
@@ -23,26 +23,24 @@ app.use(
 );
 
 app.use("/auth", AuthRouter);
-// app.use(authToken);
+app.use(authToken);
 
-app.get("/", authToken, async (req, res) => {
-  const db = await getConnection();
+app.use(UserRouter);
 
-  const SQLquery = "SELECT * FROM mahasiswa";
+// app.get("/", authToken, async (req, res) => {
+//   const db = await getConnection();
 
-  try {
-    const [result] = await db.query(SQLquery);
+//   const SQLquery = "SELECT * FROM mahasiswa";
 
-    res.status(200).json({
-      message: "Berhasil mendapatkan data",
-      data: result,
-    });
-  } catch (error) {
-    res.status(401).json({
-      message: error,
-    });
-  }
-});
+//   try {
+//     const [result] = await db.query(SQLquery);
+
+//   } catch (error) {
+//     res.status(401).json({
+//       message: error,
+//     });
+//   }
+// });
 
 // const result = await db.query(SQLquery, (error, result) => {
 //   if (error)

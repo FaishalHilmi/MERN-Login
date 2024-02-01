@@ -17,7 +17,7 @@ function Homepage() {
     } else {
       navigate("/auth/login");
     }
-  }, [username]);
+  }, []);
 
   return (
     <section className="home">

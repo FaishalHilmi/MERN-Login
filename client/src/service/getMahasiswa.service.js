@@ -9,7 +9,6 @@ const getMahasiswa = async (token, callback) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
     callback(response.data.data);
   } catch (error) {
     console.log(error);
