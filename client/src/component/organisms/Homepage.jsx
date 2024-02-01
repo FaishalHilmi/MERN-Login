@@ -1,33 +1,21 @@
 import React, { useEffect, useState } from "react";
-import Table from "../atoms/Table";
-import axios from "axios";
+import Table from "../atoms/table";
+import getMahasiswa from "../../service/getMahasiswa.service";
+import { useNavigate } from "react-router-dom";
 
 function Homepage() {
-  const [token, setToken] = useState("");
   const [mahasiswa, setMahasiswa] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getToken = sessionStorage.getItem("token");
+
     if (getToken) {
-      getMahasiswa(getToken);
+      getMahasiswa(getToken, (mahasiswa) => setMahasiswa(mahasiswa));
+    } else {
+      navigate("/auth/login");
     }
   }, []);
-
-  const getMahasiswa = async (token) => {
-    const URL = import.meta.env.VITE_REACT_APP_URL;
-
-    try {
-      const response = await axios.get(`${URL}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setMahasiswa(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <section className="home">
@@ -42,6 +30,7 @@ function Homepage() {
             {/* <button className="py-2 px-4 bg-blue-700 text-white rounded-md mb-4">
                 Tambah data
               </button> */}
+            {/* <Table data={mahasiswa} /> */}
             <Table data={mahasiswa} />
           </div>
         </div>

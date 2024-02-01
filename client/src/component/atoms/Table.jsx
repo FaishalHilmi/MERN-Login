@@ -12,14 +12,18 @@ function Table({ data }) {
         </tr>
       </thead>
       <tbody>
-        {data.map((mahasiswa, index) => (
-          <tr key={index} className="capitalize">
-            <td>{index + 1}</td>
-            <td>{mahasiswa.nama_lengkap}</td>
-            <td>{mahasiswa.kelas}</td>
-            <td>{mahasiswa.alamat}</td>
-          </tr>
-        ))}
+        {data > 0 ? (
+          <p>data kosong</p>
+        ) : (
+          data.map((mahasiswa, index) => (
+            <tr key={index} className="capitalize">
+              <td>{index + 1}</td>
+              <td>{mahasiswa.nama_lengkap}</td>
+              <td>{mahasiswa.kelas}</td>
+              <td>{mahasiswa.alamat}</td>
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );

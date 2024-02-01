@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navigasi() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    navigate("/auth/login");
+  };
+
   return (
     <nav>
       <div className="navbar bg-white font-open-sans py-4 shadow-md">
@@ -8,7 +16,10 @@ function Navigasi() {
           <div className="navbar-wrapper flex justify-between items-center">
             <div className="navbar-logo text-3xl font-bold">MERN</div>
             <div className="navbar-button-logout">
-              <button className="py-2 px-4 bg-blue-700 rounded-md text-white">
+              <button
+                className="py-2 px-4 bg-blue-700 rounded-md text-white"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </div>
