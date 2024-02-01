@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import Table from "../atoms/table";
 import getMahasiswa from "../../service/getMahasiswa.service";
 import { useNavigate } from "react-router-dom";
+import getUsername from "../../service/getUsername.service";
 
 function Homepage() {
+  const [username, setUsername] = useState("");
   const [mahasiswa, setMahasiswa] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getToken = sessionStorage.getItem("token");
-
     if (getToken) {
       getMahasiswa(getToken, (mahasiswa) => setMahasiswa(mahasiswa));
+      getUsername(getToken, (username) => setUsername(username));
     } else {
       navigate("/auth/login");
     }
-  }, []);
+  }, [username]);
 
   return (
     <section className="home">
       <div className="container min-h-screen max-w-[1040px] mx-auto pt-10 font-open-sans">
         <div className="home-wrapper">
           <h1 className="font-bold text-2xl mb-1">
-            Selamat datang, <span className="text-blue-700">Jhon Doe</span> 👋
+            Selamat datang,{" "}
+            <span className="text-blue-700 capitalize">{username}</span> 👋
           </h1>
           <p className="mb-6 text-gray-400">Data mahasiswa</p>
 
