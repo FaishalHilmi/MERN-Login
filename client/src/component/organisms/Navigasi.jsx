@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../atoms/Button";
 
 function Navigasi() {
   const navigate = useNavigate();
@@ -16,12 +17,7 @@ function Navigasi() {
           <div className="navbar-wrapper flex justify-between items-center">
             <div className="navbar-logo text-3xl font-bold">MERN</div>
             <div className="navbar-button-logout">
-              <button
-                className="py-2 px-4 bg-blue-700 rounded-md text-white"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+              <Button color="bg-blue-700" text="Logout" handle={handleLogout} />
             </div>
           </div>
         </div>

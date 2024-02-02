@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Table from "../atoms/table";
+import Table from "../atoms/Table";
 import getMahasiswa from "../../service/getMahasiswa.service";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import getUsername from "../../service/getUsername.service";
 
 function Homepage() {
@@ -21,7 +21,7 @@ function Homepage() {
 
   return (
     <section className="home">
-      <div className="container min-h-screen max-w-[1040px] mx-auto pt-10 font-open-sans">
+      <div className="container-home min-h-screen max-w-[1040px] mx-auto pt-10 font-open-sans">
         <div className="home-wrapper">
           <h1 className="font-bold text-2xl mb-1">
             Selamat datang,{" "}
@@ -30,10 +30,14 @@ function Homepage() {
           <p className="mb-6 text-gray-400">Data mahasiswa</p>
 
           <div className="table-wrapper bg-white p-6 rounded-lg shadow-md">
-            {/* <button className="py-2 px-4 bg-blue-700 text-white rounded-md mb-4">
-                Tambah data
-              </button> */}
-            {/* <Table data={mahasiswa} /> */}
+            <div className="button mb-6">
+              <Link
+                to="/mahasiswa/add-mahasiswa"
+                className="py-2 px-4 bg-blue-700 text-white rounded-md"
+              >
+                Tambah Data
+              </Link>
+            </div>
             <Table data={mahasiswa} />
           </div>
         </div>

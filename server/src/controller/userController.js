@@ -22,13 +22,14 @@ export const getAllMahasiswaController = async (req, res) => {
 };
 
 export const createMahasiswaController = async (req, res) => {
-  const { nama_lengkap, kelas, alamat, link } = req.body;
+  const { nama_lengkap, kelas, alamat } = req.body;
+  const { filename } = req.file;
 
   const dataMahasiswa = {
     nama_lengkap,
     kelas,
     alamat,
-    link,
+    filename,
   };
 
   try {
@@ -48,17 +49,18 @@ export const createMahasiswaController = async (req, res) => {
 
 export const updateMahasiswaController = async (req, res) => {
   const { id } = req.params;
-  const { nama_lengkap, kelas, alamat, link } = req.body;
+  const { filename } = req.file;
+  const { nama_lengkap, kelas, alamat } = req.body;
 
   const dataMahasiswa = {
     nama_lengkap,
     kelas,
     alamat,
-    link,
+    filename,
   };
 
   try {
-    const result = await updateMahasiswa(dataMahasiswa, id);
+    const result = await updateMahasiswa(dataMahasiswa, filename, id);
 
     res.status(200).json({
       message: "Berhasil Mengupdate Data",
