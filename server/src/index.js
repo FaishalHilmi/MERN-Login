@@ -26,7 +26,7 @@ app.use("/assets/images", express.static("public"));
 app.use("/auth", AuthRouter);
 // app.use(authToken);
 
-app.use(UserRouter);
+app.use("/mahasiswa", UserRouter);
 
 app.use((error, req, res, next) => {
   res.json({

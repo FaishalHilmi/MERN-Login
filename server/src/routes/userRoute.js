@@ -14,7 +14,7 @@ router.get("/", getAllMahasiswaController);
 
 router.use(authToken);
 router.post("/", upload.single("images"), createMahasiswaController);
-router.put("/:id", upload.single("images"), updateMahasiswaController);
+router.patch("/:id", upload.single("images"), updateMahasiswaController);
 router.delete("/:id", deleteMahasiswaController);
 
 export default router;

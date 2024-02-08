@@ -1,10 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import axios from "axios";
 
 function Table({ data }) {
-  const handleHapus = () => {
-    console.log("hapus");
+  const handleDelete = async (id) => {
+    const token = sessionStorage.getItem("token");
+    const URL = import.meta.env.VITE_REACT_APP_URL;
+    try {
+      await axios.delete(`${URL}/mahasiswa/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      document.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -37,7 +49,12 @@ function Table({ data }) {
                 >
                   Edit
                 </Link>
-                <Button color="bg-red-600" text="Hapus" handle={handleHapus} />
+                <button
+                  className="bg-red-600 py-2 px-4 text-white rounded-md"
+                  onClick={() => handleDelete(mahasiswa.id)}
+                >
+                  Hapus
+                </button>
               </td>
             </tr>
           ))

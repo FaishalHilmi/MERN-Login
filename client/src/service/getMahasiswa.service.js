@@ -4,7 +4,7 @@ const getMahasiswa = async (token, callback) => {
   const URL = import.meta.env.VITE_REACT_APP_URL;
 
   try {
-    const response = await axios.get(`${URL}`, {
+    const response = await axios.get(`${URL}/mahasiswa`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
