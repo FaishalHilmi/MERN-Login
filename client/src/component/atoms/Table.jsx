@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -27,6 +27,7 @@ function Table({ data }) {
           <th className="text-start">Nama Lengkap</th>
           <th className="text-start">Kelas</th>
           <th className="text-start">Alamat</th>
+          <th className="text-start">Gambar</th>
           <th className="text-start">Action</th>
         </tr>
       </thead>
@@ -40,11 +41,18 @@ function Table({ data }) {
             <tr key={index} className="capitalize">
               <td>{index + 1}</td>
               <td>{mahasiswa.nama_lengkap}</td>
-              <td>{mahasiswa.kelas}</td>
+              <td className="uppercase">{mahasiswa.kelas}</td>
               <td>{mahasiswa.alamat}</td>
+              <td>
+                <img
+                  src={`http://localhost:4000/assets/images/${mahasiswa.link}`}
+                  alt="gambar"
+                  className="w-24"
+                />
+              </td>
               <td className="flex gap-2">
                 <Link
-                  to={`/mahasiswa/update-mahasiwa/${mahasiswa.id}`}
+                  to={`/mahasiswa/update-mahasiswa/${mahasiswa.id}`}
                   className="py-2 px-4 bg-green-700 text-white rounded-md"
                 >
                   Edit

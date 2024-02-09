@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
 import { useState } from "react";
 import LabeledInput from "../molecules/LabeledInput";
 import Label from "../atoms/Label";
 import handleRegister from "../../service/register.service";
+import { Link } from "react-router-dom";
 
 function AuthRegister() {
   const [username, setUsername] = useState("");
@@ -62,13 +62,14 @@ function AuthRegister() {
               </select>
             </div>
 
-            {/* <p
-              className={`message text-red-500 text-sm font-semibold ${
-                showMessage ? "visible" : "hidden"
-              }`}
-            >
-              !cek
-            </p> */}
+            <div className="message flex justify-center pt-4">
+              <span>
+                Sudah punya akun ?{" "}
+                <Link to="/auth/login" className="text-blue-500 underline">
+                  Login
+                </Link>
+              </span>
+            </div>
             <button
               type="submit"
               className="bg-blue-700 text-white py-2 px-4 mt-4 rounded-md w-full"

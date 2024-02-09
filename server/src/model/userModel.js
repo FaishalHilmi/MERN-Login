@@ -9,6 +9,15 @@ export const getAllMahasiswa = async () => {
   return result;
 };
 
+export const getOneMahasiswa = async (id) => {
+  const db = await getConnection();
+  const SQLQuery = `SELECT * FROM mahasiswa WHERE id = ${id}`;
+
+  const [result] = await db.query(SQLQuery);
+
+  return result;
+};
+
 export const createMahasiswa = async (mahasiswa) => {
   const db = await getConnection();
   const SQLQuery = `INSERT INTO mahasiswa (nama_lengkap, kelas, alamat, link)

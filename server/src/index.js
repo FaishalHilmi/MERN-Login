@@ -21,11 +21,9 @@ app.use(
     origin: "*",
   })
 );
-app.use("/assets/images", express.static("public"));
+app.use("/assets/images", express.static("public/images"));
 
 app.use("/auth", AuthRouter);
-// app.use(authToken);
-
 app.use("/mahasiswa", UserRouter);
 
 app.use((error, req, res, next) => {

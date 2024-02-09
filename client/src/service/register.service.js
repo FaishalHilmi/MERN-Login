@@ -11,7 +11,6 @@ const handleRegister = async (event, username, password, role) => {
       role,
     });
 
-    // navigate("/auth/login");
     document.location.href = "/auth/login";
   } catch (error) {
     console.log(error);

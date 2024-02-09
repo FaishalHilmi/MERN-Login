@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import LabeledInput from "../molecules/LabeledInput";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function AuthLogin() {
   const [username, setUsername] = useState("");
@@ -70,6 +70,14 @@ function AuthLogin() {
             >
               {message}!
             </p>
+            <div className="message flex justify-center pt-4">
+              <span>
+                Belum punya akun ?{" "}
+                <Link to="/auth/register" className="text-blue-500 underline">
+                  Register
+                </Link>
+              </span>
+            </div>
             <button
               type="submit"
               className="bg-blue-700 text-white py-2 px-4 mt-4 rounded-md w-full"

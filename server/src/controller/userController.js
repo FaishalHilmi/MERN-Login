@@ -2,6 +2,7 @@ import {
   createMahasiswa,
   deleteMahasiswa,
   getAllMahasiswa,
+  getOneMahasiswa,
   updateMahasiswa,
 } from "../model/userModel.js";
 
@@ -16,6 +17,24 @@ export const getAllMahasiswaController = async (req, res) => {
   } catch (error) {
     res.status(401).json({
       message: "Gagal Mendapatkan Data",
+      serverMessage: error,
+    });
+  }
+};
+
+export const getOneMahasiswaController = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await getOneMahasiswa(id);
+
+    res.status(200).json({
+      message: "Berhasil Mendapatkan Satu Data",
+      data: result,
+    });
+  } catch (error) {
+    res.status(401).json({
+      message: "Gagal Mendapatkan Satu Data",
       serverMessage: error,
     });
   }
